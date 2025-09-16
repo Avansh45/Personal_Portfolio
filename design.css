@@ -189,13 +189,13 @@ h2 {
   gap: 30px;
 }
 
-.projects-section .card {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: var(--shadow-light);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.projects-section .card img {
+  width: 100%;
+  height: 120px; /* Reduced from 180px */
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
 }
+
 
 .projects-section .card:hover {
   transform: translateY(-8px);
