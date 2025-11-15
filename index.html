@@ -13,8 +13,835 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="design.css">
   <title>Avansh Chadgal | Portfolio</title>
+  <style>
+    /* ----------------------------------------------------------
+   GLOBAL RESET & BASE STYLES
+---------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------
+   NAVIGATION
+---------------------------------------------------------- */
+nav {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .left a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  text-decoration: none;
+}
+
+nav .right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav .right a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+nav .right a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102,126,234,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+nav .right a:hover::before {
+  left: 100%;
+}
+
+nav .right a:hover {
+  background: rgba(102,126,234,0.1);
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------
+   SECTIONS
+---------------------------------------------------------- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  background: white;
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  scroll-margin-top: 80px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+/* ----------------------------------------------------------
+   ABOUT SECTION
+---------------------------------------------------------- */
+.about-section {
+  text-align: center;
+}
+
+.headshot {
+  margin: 2rem 0;
+}
+
+.headshot img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #667eea;
+}
+
+.text {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #764ba2;
+}
+
+.text p {
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------------
+   SKILLS SECTION
+---------------------------------------------------------- */
+.skills-section .text {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.skill-card:hover::before {
+  left: 100%;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(102,126,234,0.4);
+}
+
+.skill-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.skill-level {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.skill-bar-container {
+  background: rgba(255,255,255,0.2);
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.skill-bar {
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+/* ----------------------------------------------------------
+   PROJECTS SECTION
+---------------------------------------------------------- */
+.projects-section .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.project-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-links a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.project-links a:hover {
+  color: #764ba2;
+}
+
+/* ----------------------------------------------------------
+   RESUME SECTION
+---------------------------------------------------------- */
+.download-resume {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.download-resume:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+}
+
+/* ----------------------------------------------------------
+   CONTACT SECTION
+---------------------------------------------------------- */
+.contact-section .contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info h3,
+.contact-form h3 {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.info-item {
+  margin-bottom: 1.5rem;
+}
+
+.info-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: #667eea;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.info-item a:hover {
+  background: rgba(102,126,234,0.1);
+  transform: translateX(5px);
+}
+
+.info-item i {
+  font-size: 1.3rem;
+  width: 30px;
+  text-align: center;
+}
+
+.contact-form {
+  background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05));
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+}
+
+/* ----------------------------------------------------------
+   STATUS MESSAGE
+---------------------------------------------------------- */
+.status-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  display: none;
+  font-weight: 600;
+}
+
+.status-message.success {
+  display: block;
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+  display: block;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ----------------------------------------------------------
+   FOOTER
+---------------------------------------------------------- */
+.footer-section {
+  background: rgba(255,255,255,0.95);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN - TABLETS (768px - 1024px)
+---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  main {
+    padding: 1.5rem;
+  }
+
+  section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  nav .right {
+    gap: 1rem;
+  }
+
+  nav .right a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  .text h3 {
+    font-size: 1.6rem;
+  }
+
+  .text p {
+    font-size: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .projects-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-section .contact-container {
+    gap: 2rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN - MOBILE LANDSCAPE & SMALL TABLETS (481px - 767px)
+---------------------------------------------------------- */
+@media (max-width: 767px) {
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  nav .left a {
+    font-size: 1.3rem;
+  }
+
+  nav .right {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  nav .right a {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  section {
+    padding: 2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .headshot img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .text h3 {
+    font-size: 1.4rem;
+  }
+
+  .text p {
+    font-size: 0.95rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 1.5rem;
+  }
+
+  .projects-section .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .contact-section .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .info-item a {
+    font-size: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN - MOBILE PORTRAIT (320px - 480px)
+---------------------------------------------------------- */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  nav {
+    padding: 0.8rem;
+  }
+
+  nav .left a {
+    font-size: 1.2rem;
+  }
+
+  nav .right {
+    gap: 0.3rem;
+  }
+
+  nav .right a {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  main {
+    padding: 0.8rem;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .headshot {
+    margin: 1.5rem 0;
+  }
+
+  .headshot img {
+    width: 140px;
+    height: 140px;
+    border: 4px solid #667eea;
+  }
+
+  .text {
+    padding: 0 0.5rem;
+  }
+
+  .text h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .text p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .skills-section .text {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .skills-grid {
+    gap: 1rem;
+  }
+
+  .skill-card {
+    padding: 1.2rem;
+  }
+
+  .skill-name {
+    font-size: 1.2rem;
+  }
+
+  .skill-level {
+    font-size: 0.85rem;
+  }
+
+  .projects-section .grid {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .project-links a {
+    font-size: 0.9rem;
+  }
+
+  .download-resume {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-section .contact-container {
+    gap: 1.5rem;
+  }
+
+  .contact-info h3,
+  .contact-form h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-item {
+    margin-bottom: 1rem;
+  }
+
+  .info-item a {
+    font-size: 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .info-item i {
+    font-size: 1.1rem;
+    width: 25px;
+  }
+
+  .contact-form {
+    padding: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .footer-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-content p {
+    font-size: 0.85rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN - EXTRA SMALL MOBILE (max-width: 360px)
+---------------------------------------------------------- */
+@media (max-width: 360px) {
+  nav .left a {
+    font-size: 1.1rem;
+  }
+
+  nav .right a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  section {
+    padding: 1.2rem 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .headshot img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .text h3 {
+    font-size: 1.1rem;
+  }
+
+  .text p {
+    font-size: 0.85rem;
+  }
+
+  .skill-name {
+    font-size: 1.1rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN - LARGE SCREENS (1440px+)
+---------------------------------------------------------- */
+@media (min-width: 1440px) {
+  main {
+    max-width: 1400px;
+  }
+
+  section {
+    padding: 4rem 3rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .text h3 {
+    font-size: 2rem;
+  }
+
+  .text p {
+    font-size: 1.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .projects-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+  </style>
 </head>
 
 <body>
@@ -174,7 +1001,7 @@
       <div class="text">
         <p>A comprehensive overview of my skills, education, and professional experience is available in my resume.
           Click below to download it.</p>
-        <a href="AvanshChadgalResume.pdf" download class="download-resume">Download Resume</a>
+        <a href="AvanshChadgalResume.pdf" class="download-resume">Download Resume</a>
       </div>
     </section>
     <section id="contact" class="contact-section">
